@@ -101,7 +101,7 @@ public class MetricsFilter implements Filter {
                 .startTimer();
         try {
             filterChain.doFilter(servletRequest, servletResponse);
-            requests.labels(normalizedPath, request.getMethod(), String.valueOf(response.getStatus())).inc();
+            requests.labels(normalizedPath, request.getMethod().toUpperCase(), String.valueOf(response.getStatus())).inc();
         } finally {
             timer.observeDuration();
         }
